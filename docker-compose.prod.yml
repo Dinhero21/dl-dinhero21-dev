@@ -1,0 +1,14 @@
+services:
+  web:
+    build: .
+    environment:
+      VIRTUAL_HOST: dl.dinhero21.dev
+    networks:
+      - proxy_default
+    volumes:
+      - ./files:/files:ro
+    restart: unless-stopped
+
+networks:
+  proxy_default:
+    external: true
