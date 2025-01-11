@@ -7,11 +7,15 @@
 :80 {
   root * /files
   file_server browse {
-    hide templates
-    hide .git*
+    hide .git* templates
     index index.html index.md
   }
 
   templates
-  rewrite /*.md /templates/markdown.html
+  
+  handle_path /*.md {
+    file_server
+
+    rewrite /templates/markdown.html
+  }
 }
