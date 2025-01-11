@@ -14,6 +14,7 @@
   templates
   
   handle_path /*.md {
+    # we need to override file_server since the one at root hides templates
     file_server
 
     rewrite /templates/markdown.html
