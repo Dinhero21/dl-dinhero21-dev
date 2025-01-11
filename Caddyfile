@@ -1,0 +1,17 @@
+# TODO: Hide /templates
+# - [ ] ONLY /templates
+# - [ ] not breaking the rewrite
+# - [ ] from list
+# - [ ] from direct link
+
+:80 {
+  root * /files
+  file_server browse {
+    hide templates
+    hide .git*
+    index index.html index.md
+  }
+
+  templates
+  rewrite /*.md /templates/markdown.html
+}
