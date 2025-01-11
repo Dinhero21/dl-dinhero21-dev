@@ -1,19 +1,22 @@
-# TODO: Hide /templates
-# - [ ] ONLY /templates
-# - [ ] not breaking the rewrite
-# - [ ] from list
-# - [ ] from direct link
-
 :80 {
   root * /files
   file_server browse {
+    # TODO: hide ONLY /templates
     hide .git* templates
     index index.html index.md
   }
 
   templates
   
-  handle_path /*.md {
+  # handle /*.example can't be used because it's shallow
+  # handle *.example isn't allowed
+  # also tried to use ** and that didn't work
+
+  @markdown {
+    path *.md
+  }
+
+  handle @markdown {
     # we need to override file_server since the one at root hides templates
     file_server
 
